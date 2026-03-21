@@ -1,0 +1,85 @@
+{
+  "scenario_name": "Empirical Kenya Ethiopia Bootstrap",
+  "start_year": 2020,
+  "duration_years": 10,
+  "countries": [
+    {
+      "name": "Kenya",
+      "iso3": "KEN",
+      "region": "East Africa",
+      "policy": {
+        "kind": "hybrid",
+        "params": {}
+      },
+      "geography": {
+        "arable_land": 0.48,
+        "minerals": 0.3,
+        "energy": 0.34,
+        "ruggedness": 0.4,
+        "coastal_access": 0.72,
+        "climate_risk": 0.38,
+        "trade_access": 0.64
+      },
+      "bootstrap": {
+        "country_iso3": "KEN",
+        "country_iso_numeric": "404",
+        "country_name": "Kenya",
+        "year": 2020,
+        "country_year_files": [
+          "../data/processed/qog/qog-basic-ts__country_year.csv",
+          "../data/processed/qog/qog-expert-survey-2020__country_year.csv",
+          "../data/processed/world_bank/world-bank-indicators-api__country_year.csv",
+          "../data/processed/ucdp/ucdp-organized-violence-country-year__country_year.csv"
+        ],
+        "project_exposure_files": [
+          "../data/processed/aiddata/aiddata-ppd-v2__project_exposure.csv",
+          "../data/processed/aiddata/aiddata-gcdf-v3-adm__project_exposure.csv"
+        ]
+      }
+    },
+    {
+      "name": "Ethiopia",
+      "iso3": "ETH",
+      "region": "East Africa",
+      "policy": {
+        "kind": "rule",
+        "params": {}
+      },
+      "geography": {
+        "arable_land": 0.55,
+        "minerals": 0.34,
+        "energy": 0.28,
+        "ruggedness": 0.64,
+        "coastal_access": 0.1,
+        "climate_risk": 0.42,
+        "trade_access": 0.38
+      },
+      "bootstrap": {
+        "country_iso3": "ETH",
+        "country_iso_numeric": "231",
+        "country_name": "Ethiopia",
+        "year": 2020,
+        "country_year_files": [
+          "../data/processed/qog/qog-basic-ts__country_year.csv",
+          "../data/processed/qog/qog-expert-survey-2020__country_year.csv",
+          "../data/processed/world_bank/world-bank-indicators-api__country_year.csv",
+          "../data/processed/ucdp/ucdp-organized-violence-country-year__country_year.csv"
+        ],
+        "project_exposure_files": [
+          "../data/processed/aiddata/aiddata-ppd-v2__project_exposure.csv",
+          "../data/processed/aiddata/aiddata-gcdf-v3-adm__project_exposure.csv"
+        ]
+      }
+    }
+  ],
+  "relations": [
+    {
+      "country_a": "KEN",
+      "country_b": "ETH",
+      "trade_intensity": 0.28,
+      "alliance_score": 0.22,
+      "border_tension": 0.24,
+      "active_conflict": false
+    }
+  ]
+}

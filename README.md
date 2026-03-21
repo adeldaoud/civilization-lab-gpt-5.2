@@ -91,7 +91,7 @@ Do not let the simulator inherit the ontology of any single dataset.
 
 ## Early Code Scaffold
 
-The repository now includes a minimal Python package for the empirical layer:
+The repository now includes:
 
 - `pyproject.toml`
 - `src/civlab/data/models.py`
@@ -102,6 +102,23 @@ The repository now includes a minimal Python package for the empirical layer:
 - `src/civlab/data/sources/ucdp.py`
 - `src/civlab/data/sources/world_bank.py`
 - `src/civlab/cli.py`
+- `src/civlab/sim/models.py`
+- `src/civlab/sim/policies.py`
+- `src/civlab/sim/bootstrap.py`
+- `src/civlab/sim/scenario.py`
+- `src/civlab/sim/engine.py`
+- `scenarios/two_country_rivalry.json`
+- `scenarios/empirical_kenya_ethiopia.json`
+
+## Runnable Vertical Slice
+
+The current build now supports:
+
+- canonical `country_year` and `project_exposure` data ingestion
+- empirical bootstrapping of country state from normalized QoG, AidData, UCDP, and World Bank data
+- a yearly headless simulator with countries, leaders, governments, cohorts, and bilateral relations
+- pluggable policy types: `rule`, `hybrid`, `rl`, and `llm` style placeholders behind one interface
+- output bundles with `summary.json`, `country_year.csv`, and `events.jsonl`
 
 Example commands:
 
@@ -112,6 +129,9 @@ Example commands:
 - `python -m civlab.cli ingest-asset qog qog-basic-ts --series wbgi_cce --series wdi_pop`
 - `python -m civlab.cli ingest-asset aiddata aiddata-ppd-v2`
 - `python -m civlab.cli plan-target conflict_risk`
+- `python -m civlab.cli describe-scenario scenarios/two_country_rivalry.json`
+- `python -m civlab.cli run-scenario scenarios/two_country_rivalry.json --output artifacts/two-country`
+- `python -m civlab.cli run-scenario scenarios/empirical_kenya_ethiopia.json --output artifacts/kenya-ethiopia`
 
 ## Source Inspirations
 

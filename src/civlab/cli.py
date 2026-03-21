@@ -10,6 +10,8 @@ from civlab.data.catalog import build_default_pipeline, default_targets
 from civlab.data.io import default_processed_path, default_raw_path
 from civlab.data.models import CanonicalTable
 from civlab.data.schema import SCHEMAS
+from civlab.sim.engine import run_simulation, write_simulation_outputs
+from civlab.sim.scenario import load_scenario
 
 
 def _format_list(values: Iterable[str]) -> str:
@@ -69,6 +71,20 @@ def main() -> None:
     ingest_asset.add_argument("asset_slug")
     ingest_asset.add_argument("--root", default=".", help="Project root containing data/raw and data/processed")
     ingest_asset.add_argument("--series", action="append", default=[], help="Series subset for long-form output")
+
+    run_scenario = subparsers.add_parser(
+        "run-scenario",
+        help="Run a simulator scenario and write outputs",
+    )
+    run_scenario.add_argument("scenario_path")
+    run_scenario.add_argument("--steps", type=int, help="Override scenario duration in years")
+    run_scenario.add_argument("--output", default="artifacts/latest-run", help="Output directory for summary and logs")
+
+    describe_scenario = subparsers.add_parser(
+        "describe-scenario",
+        help="Print a compact summary of a scenario definition",
+    )
+    describe_scenario.add_argument("scenario_path")
 
     args = parser.parse_args()
     pipeline = build_default_pipeline()
@@ -139,6 +155,15 @@ def main() -> None:
             print(f"  - {note}")
         return
 
+    if args.command == "describe-scenario":
+        setup = load_scenario(Path(args.scenario_path), steps_override=args.steps if hasattr(args, "steps") else None)
+        print(f"{setup.scenario_name}")
+        print(f"  start_year: {setup.start_year}")
+        print(f"  duration_years: {setup.duration_years}")
+        print(f"  countries: {_format_list(sorted(setup.countries))}")
+        print(f"  relations: {len(setup.relations)}")
+        return
+
     if args.command in {"download-asset", "normalize-asset", "ingest-asset"}:
         root = Path(args.root).resolve()
         source = pipeline.registry.get(args.source_key)
@@ -171,6 +196,19 @@ def main() -> None:
         )
         print(f"raw: {download_result.path}")
         print(f"normalized: {normalization.path} ({normalization.row_count} rows)")
+        return
+
+    if args.command == "run-scenario":
+        scenario_path = Path(args.scenario_path).resolve()
+        setup = load_scenario(scenario_path, steps_override=args.steps)
+        result = run_simulation(setup)
+        output_dir = Path(args.output).resolve()
+        write_simulation_outputs(result, output_dir)
+        final_year = setup.start_year + setup.duration_years - 1
+        print(f"scenario: {setup.scenario_name}")
+        print(f"final_year: {final_year}")
+        print(f"output: {output_dir}")
+        print(f"events: {len(result.events)}")
         return
 
 

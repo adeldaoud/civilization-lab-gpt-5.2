@@ -1,0 +1,131 @@
+{
+  "scenario_name": "Two Country Rivalry",
+  "start_year": 2026,
+  "duration_years": 15,
+  "countries": [
+    {
+      "name": "Northland",
+      "iso3": "NLD",
+      "region": "Northern Arc",
+      "population": 32000000,
+      "policy": {
+        "kind": "rule",
+        "params": {}
+      },
+      "geography": {
+        "arable_land": 0.62,
+        "minerals": 0.48,
+        "energy": 0.58,
+        "ruggedness": 0.3,
+        "coastal_access": 0.9,
+        "climate_risk": 0.22,
+        "trade_access": 0.8
+      },
+      "resources": {
+        "food": 62,
+        "energy": 58,
+        "minerals": 49,
+        "industry": 66,
+        "knowledge": 61,
+        "treasury": 72
+      },
+      "biology": {
+        "aggression": 0.42,
+        "stress_reactivity": 0.45,
+        "self_preservation": 0.65,
+        "health_burden": 0.18
+      },
+      "psychology": {
+        "trust": 0.55,
+        "fear": 0.28,
+        "self_control": 0.6,
+        "status_drive": 0.44,
+        "trauma": 0.1
+      },
+      "sociology": {
+        "legitimacy": 0.58,
+        "inequality": 0.32,
+        "polarization": 0.3,
+        "institutional_quality": 0.62,
+        "bureaucratic_quality": 0.64,
+        "information_integrity": 0.6,
+        "collective_efficacy": 0.58
+      },
+      "leader": {
+        "name": "Elena Mar",
+        "ideology": "civic-developmentalist",
+        "competence": 0.68,
+        "hawkishness": 0.42,
+        "charisma": 0.56,
+        "strategic_horizon": 0.65
+      }
+    },
+    {
+      "name": "Southreach",
+      "iso3": "STR",
+      "region": "Southern Corridor",
+      "population": 41000000,
+      "policy": {
+        "kind": "hybrid",
+        "params": {}
+      },
+      "geography": {
+        "arable_land": 0.45,
+        "minerals": 0.7,
+        "energy": 0.55,
+        "ruggedness": 0.56,
+        "coastal_access": 0.35,
+        "climate_risk": 0.38,
+        "trade_access": 0.46
+      },
+      "resources": {
+        "food": 48,
+        "energy": 54,
+        "minerals": 72,
+        "industry": 44,
+        "knowledge": 38,
+        "treasury": 41
+      },
+      "biology": {
+        "aggression": 0.52,
+        "stress_reactivity": 0.58,
+        "self_preservation": 0.56,
+        "health_burden": 0.26
+      },
+      "psychology": {
+        "trust": 0.4,
+        "fear": 0.42,
+        "self_control": 0.47,
+        "status_drive": 0.52,
+        "trauma": 0.18
+      },
+      "sociology": {
+        "legitimacy": 0.42,
+        "inequality": 0.48,
+        "polarization": 0.44,
+        "institutional_quality": 0.4,
+        "bureaucratic_quality": 0.38,
+        "information_integrity": 0.36,
+        "collective_efficacy": 0.39
+      },
+      "leader": {
+        "name": "Darian Khev",
+        "ideology": "security-nationalist",
+        "competence": 0.51,
+        "hawkishness": 0.66,
+        "charisma": 0.58,
+        "strategic_horizon": 0.44
+      }
+    }
+  ],
+  "relations": [
+    {
+      "country_a": "NLD",
+      "country_b": "STR",
+      "trade_intensity": 0.34,
+      "alliance_score": 0.05,
+      "border_tension": 0.46,
+      "active_conflict": false
+    }
+  ]
+}
