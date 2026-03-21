@@ -106,9 +106,12 @@ The repository now includes a minimal Python package for the empirical layer:
 Example commands:
 
 - `python -m pip install -e .`
-- `civlab list-sources`
-- `civlab describe-source qog`
-- `civlab plan-target conflict_risk`
+- `python -m civlab.cli list-sources`
+- `python -m civlab.cli list-assets qog`
+- `python -m civlab.cli show-schema country_year`
+- `python -m civlab.cli ingest-asset qog qog-basic-ts --series wbgi_cce --series wdi_pop`
+- `python -m civlab.cli ingest-asset aiddata aiddata-ppd-v2`
+- `python -m civlab.cli plan-target conflict_risk`
 
 ## Source Inspirations
 
