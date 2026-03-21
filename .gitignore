@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.mypy_cache/
+
+# Data and artifacts
+artifacts/
+checkpoints/
+runs/
+data/raw/
+data/processed/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+MemoryCaptures/
+Assets/AssetStoreTools*
+
+# Unreal
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+*.sln
+
+# OS
+Thumbs.db
+.DS_Store
