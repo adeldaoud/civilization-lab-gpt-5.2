@@ -15,7 +15,7 @@ Exit criteria:
 - agreement on unit of simulation
 - agreement on flourishing metrics
 - agreement on first vertical slice
-- agreement on first QoG-based validation targets
+- agreement on first multi-source validation targets across QoG, AidData, and companion datasets
 
 ## Phase 1: Minimal scientific core
 
@@ -26,6 +26,7 @@ Scope:
 - leader, government, and cohort population agents
 - resource flows, taxation, legitimacy, trust, and basic diplomacy
 - country-year observation layer for historical calibration
+- project-level and geospatial evidence adapters for external exposure
 
 Exit criteria:
 
@@ -86,7 +87,7 @@ Scope:
 - parameter sweeps
 - uncertainty estimates
 - cautious scenario forecasting
-- QoG-centered backtesting and hindcasting
+- multi-source backtesting and hindcasting across governance, finance, and conflict data
 
 Exit criteria:
 
@@ -117,6 +118,6 @@ Recommended sequence:
 3. implement the minimal simulation clock and event log
 4. add rule-based leader and government agents
 5. add population cohorts and trust or legitimacy dynamics
-6. wire in QoG-based country-year targets for the first validation loop
+6. wire in initial QoG and AidData targets for the first validation loop
 7. build the first map-based replay dashboard
 8. run a two-country peace-versus-war experiment

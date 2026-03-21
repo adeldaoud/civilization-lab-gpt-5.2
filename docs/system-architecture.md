@@ -9,6 +9,7 @@
 5. Preserve replayability, interpretability, and experiment control.
 6. Require successful backtesting before trusting forecasts.
 7. Treat forecasting as a downstream use case, not the first milestone.
+8. Do not let any single dataset define the simulator ontology.
 
 ## Recommended Architecture
 
@@ -71,7 +72,7 @@ Suggested responsibilities:
 - run hindcasts and rolling-origin backtests
 - score explanatory and predictive performance
 
-The main initial target should be country-year validation against QoG-centered panels, then expansion to conflict, trade, climate, and survey datasets.
+The main initial target should be country-year validation against QoG-centered panels, combined with project-level and geospatial evidence from sources such as AidData, then expanded to conflict, trade, climate, and survey datasets.
 
 ## World Model
 

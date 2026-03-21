@@ -12,7 +12,7 @@ Build a research-grade simulator that can represent civilizations as interacting
 - hybrid agents that combine scripted constraints with learned policies
 
 The system is intended to explain observed macro-social dynamics, test counterfactuals, and eventually support cautious forecasting about nations and humanity as a whole.
-It should also support retrospective backtesting on real country-year data, especially through QoG and related comparative datasets, so that forecasting and explanation are grounded in observed history.
+It should also support retrospective backtesting on real country-year and project-level data, especially through QoG, AidData, and related comparative datasets, so that forecasting and explanation are grounded in observed history.
 
 ## Core Research Questions
 
@@ -57,7 +57,7 @@ This keeps the science, training loops, calibration, and reproducibility indepen
 2. `Society Layer`: states, governments, institutions, laws, religions, cultures, and class structure
 3. `Agent Layer`: leaders, ministries, elites, firms, military actors, households, and population cohorts
 4. `Decision Layer`: rule-based, RL, LLM, and hybrid policy engines
-5. `Empirical Layer`: data ingestion, harmonization, calibration, backtesting, and hindcasting
+5. `Empirical Layer`: multi-source data ingestion, harmonization, calibration, backtesting, and hindcasting
 6. `Research Layer`: metrics, experiments, forecasting, and interpretability
 7. `Visual Layer`: map, timeline, diplomacy view, class tension view, and event replay
 
@@ -78,6 +78,37 @@ This keeps the science, training loops, calibration, and reproducibility indepen
 - `docs/empirical-validation.md`
 - `docs/technology-decision.md`
 - `docs/roadmap.md`
+
+## Empirical Data Principle
+
+Do not let the simulator inherit the ontology of any single dataset.
+
+- `QoG` is a strong governance anchor for country-year backtesting.
+- `AidData` adds project-level, geospatial, and development-finance structure.
+- `UCDP` adds conflict events and country-year violence outcomes.
+- `World Bank` adds macroeconomic and demographic country-year indicators.
+- the empirical layer should fuse multiple sources into simulator-native latent variables rather than mirror one source schema.
+
+## Early Code Scaffold
+
+The repository now includes a minimal Python package for the empirical layer:
+
+- `pyproject.toml`
+- `src/civlab/data/models.py`
+- `src/civlab/data/registry.py`
+- `src/civlab/data/pipeline.py`
+- `src/civlab/data/sources/qog.py`
+- `src/civlab/data/sources/aiddata.py`
+- `src/civlab/data/sources/ucdp.py`
+- `src/civlab/data/sources/world_bank.py`
+- `src/civlab/cli.py`
+
+Example commands:
+
+- `python -m pip install -e .`
+- `civlab list-sources`
+- `civlab describe-source qog`
+- `civlab plan-target conflict_risk`
 
 ## Source Inspirations
 

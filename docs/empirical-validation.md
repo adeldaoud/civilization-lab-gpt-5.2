@@ -9,6 +9,18 @@ It should be an empirical research system that can:
 - generate cautious forecasts
 - explain why outcomes emerged
 
+## Evidence Stack
+
+The simulator should not be designed around the schema of one dataset.
+
+Use an evidence stack:
+
+- governance and institutions from sources such as QoG
+- development-finance and project exposure from sources such as AidData
+- conflict, macroeconomic, demographic, and survey layers from additional adapters
+
+The simulator's latent state should sit above the data sources, so new datasets refine or challenge the model rather than redefine its ontology.
+
 ## Primary Data Anchor: QoG
 
 The first validation anchor should be the Quality of Government data ecosystem.
@@ -48,6 +60,8 @@ Example observed proxies:
 - conflict event labels
 
 The model should never assume that an observed variable is the same thing as the latent construct.
+
+AidData is especially important here because it contributes project-level and geospatial evidence that does not fit neatly into a pure country-year panel. That makes it useful both for validation and for testing how external finance and infrastructure exposure propagate into domestic political and social dynamics.
 
 ## Backtesting Design
 

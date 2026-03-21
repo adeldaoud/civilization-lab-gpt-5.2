@@ -132,7 +132,7 @@ Core rules:
 
 ## QoG-Centered Validation Strategy
 
-The first empirical anchor should be the QoG ecosystem.
+The first empirical anchor should be the QoG ecosystem, but it should not become the full schema of the simulator.
 
 Why QoG is a good fit:
 
@@ -144,7 +144,7 @@ Recommended usage:
 
 - use the QoG Basic or Standard time-series datasets as the main country-year panel
 - use the QoG Expert Survey for bureaucracy design, meritocracy, impartiality, and political interference
-- align these with conflict, trade, demography, and macroeconomic sources for target outcomes
+- align these with AidData, conflict, trade, demography, and macroeconomic sources for target outcomes
 
 Suggested initial target variables:
 
@@ -154,6 +154,7 @@ Suggested initial target variables:
 - regime characteristics
 - inequality and welfare proxies
 - violence or conflict onset indicators
+- external development-finance and infrastructure exposure
 
 ## Evaluation Targets
 
@@ -185,6 +186,7 @@ Candidate sources to assess for licensing and fit:
 
 - QoG Basic and Standard datasets
 - QoG Expert Survey
+- AidData project, geospatial, and survey datasets
 - World Bank
 - Maddison Project Database
 - V-Dem
