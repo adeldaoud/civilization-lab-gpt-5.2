@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Civilization Lab Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="backdrop"></div>
+    <div class="grid-glow"></div>
+    <main class="app-shell">
+      <header class="hero-card">
+        <div>
+          <p class="eyebrow">Civilization Lab</p>
+          <h1 id="scenarioTitle">Simulation Dashboard</h1>
+          <p id="scenarioSubtitle" class="subtitle">Loading run manifest...</p>
+        </div>
+        <div class="hero-controls">
+          <label class="control-block">
+            <span>Run</span>
+            <select id="runSelect"></select>
+          </label>
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <span>Years</span>
+              <strong id="yearsRange">-</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Events</span>
+              <strong id="eventCount">-</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Countries</span>
+              <strong id="countryCount">-</strong>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="timeline-card">
+        <div class="timeline-header">
+          <div>
+            <p class="eyebrow">Timeline</p>
+            <h2 id="yearLabel">Year</h2>
+          </div>
+          <div class="timeline-metric-switcher" id="metricSwitcher"></div>
+        </div>
+        <input id="yearSlider" type="range" min="0" max="0" value="0" />
+      </section>
+
+      <section class="dashboard-grid">
+        <section class="panel stage-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Civilization Field</p>
+              <h3>Conflict and Flourishing Geometry</h3>
+            </div>
+            <p class="panel-note">Node size tracks population, ring glow tracks flourishing, and link heat tracks conflict risk.</p>
+          </div>
+          <svg id="constellationSvg" viewBox="0 0 800 520" aria-label="Simulation field"></svg>
+        </section>
+
+        <section class="panel chart-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Trajectories</p>
+              <h3 id="chartTitle">Metric Trends</h3>
+            </div>
+            <p class="panel-note">Multi-country metric lines across the entire run.</p>
+          </div>
+          <svg id="trendSvg" viewBox="0 0 760 320" aria-label="Trend chart"></svg>
+          <div id="chartLegend" class="chart-legend"></div>
+        </section>
+
+        <section class="panel card-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">State Readout</p>
+              <h3>Country Status Cards</h3>
+            </div>
+            <p class="panel-note">Legitimacy, trust, fiscal strength, and risk at the selected year.</p>
+          </div>
+          <div id="countryCards" class="country-cards"></div>
+        </section>
+
+        <section class="panel events-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Event Feed</p>
+              <h3>Selected Year Events</h3>
+            </div>
+            <p class="panel-note">Policy, border crises, war onset, peace, and domestic unrest.</p>
+          </div>
+          <div id="eventFeed" class="event-feed"></div>
+        </section>
+      </section>
+    </main>
+
+    <template id="countryCardTemplate">
+      <article class="country-card">
+        <div class="country-head">
+          <div>
+            <p class="country-name"></p>
+            <p class="country-iso"></p>
+          </div>
+          <div class="delta-chip"></div>
+        </div>
+        <div class="metric-stack"></div>
+      </article>
+    </template>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>

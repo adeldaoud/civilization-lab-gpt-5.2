@@ -12,6 +12,7 @@ checkpoints/
 runs/
 data/raw/
 data/processed/
+web/runs/index.json
 
 # Jupyter
 .ipynb_checkpoints/

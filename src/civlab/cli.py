@@ -12,6 +12,8 @@ from civlab.data.models import CanonicalTable
 from civlab.data.schema import SCHEMAS
 from civlab.sim.engine import run_simulation, write_simulation_outputs
 from civlab.sim.scenario import load_scenario
+from civlab.web.manifest import build_dashboard_manifest
+from civlab.web.server import serve_dashboard
 
 
 def _format_list(values: Iterable[str]) -> str:
@@ -78,6 +80,7 @@ def main() -> None:
     )
     run_scenario.add_argument("scenario_path")
     run_scenario.add_argument("--steps", type=int, help="Override scenario duration in years")
+    run_scenario.add_argument("--root", default=".", help="Project root containing artifacts and web")
     run_scenario.add_argument("--output", default="artifacts/latest-run", help="Output directory for summary and logs")
 
     describe_scenario = subparsers.add_parser(
@@ -85,6 +88,25 @@ def main() -> None:
         help="Print a compact summary of a scenario definition",
     )
     describe_scenario.add_argument("scenario_path")
+
+    refresh_dashboard = subparsers.add_parser(
+        "refresh-dashboard",
+        help="Regenerate the browser dashboard run manifest from artifacts",
+    )
+    refresh_dashboard.add_argument("--root", default=".", help="Project root containing artifacts and web")
+
+    serve_dashboard_parser = subparsers.add_parser(
+        "serve-dashboard",
+        help="Serve the browser dashboard over HTTP",
+    )
+    serve_dashboard_parser.add_argument("--root", default=".", help="Project root containing artifacts and web")
+    serve_dashboard_parser.add_argument("--host", default="127.0.0.1", help="Bind host for the local dashboard server")
+    serve_dashboard_parser.add_argument("--port", type=int, default=8000, help="Bind port for the local dashboard server")
+    serve_dashboard_parser.add_argument(
+        "--open-browser",
+        action="store_true",
+        help="Open the dashboard URL in the default browser after the server starts",
+    )
 
     args = parser.parse_args()
     pipeline = build_default_pipeline()
@@ -164,6 +186,19 @@ def main() -> None:
         print(f"  relations: {len(setup.relations)}")
         return
 
+    if args.command == "refresh-dashboard":
+        root = Path(args.root).resolve()
+        manifest_path = build_dashboard_manifest(root)
+        print(manifest_path)
+        return
+
+    if args.command == "serve-dashboard":
+        root = Path(args.root).resolve()
+        manifest_path = build_dashboard_manifest(root)
+        print(f"manifest: {manifest_path}")
+        serve_dashboard(root, host=args.host, port=args.port, open_browser=args.open_browser)
+        return
+
     if args.command in {"download-asset", "normalize-asset", "ingest-asset"}:
         root = Path(args.root).resolve()
         source = pipeline.registry.get(args.source_key)
@@ -199,15 +234,18 @@ def main() -> None:
         return
 
     if args.command == "run-scenario":
+        root = Path(args.root).resolve()
         scenario_path = Path(args.scenario_path).resolve()
         setup = load_scenario(scenario_path, steps_override=args.steps)
         result = run_simulation(setup)
         output_dir = Path(args.output).resolve()
         write_simulation_outputs(result, output_dir)
+        manifest_path = build_dashboard_manifest(root)
         final_year = setup.start_year + setup.duration_years - 1
         print(f"scenario: {setup.scenario_name}")
         print(f"final_year: {final_year}")
         print(f"output: {output_dir}")
+        print(f"manifest: {manifest_path}")
         print(f"events: {len(result.events)}")
         return
 

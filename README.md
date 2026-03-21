@@ -119,6 +119,7 @@ The current build now supports:
 - a yearly headless simulator with countries, leaders, governments, cohorts, and bilateral relations
 - pluggable policy types: `rule`, `hybrid`, `rl`, and `llm` style placeholders behind one interface
 - output bundles with `summary.json`, `country_year.csv`, and `events.jsonl`
+- a browser dashboard for replaying runs, timelines, country cards, and event feeds
 
 Example commands:
 
@@ -132,6 +133,26 @@ Example commands:
 - `python -m civlab.cli describe-scenario scenarios/two_country_rivalry.json`
 - `python -m civlab.cli run-scenario scenarios/two_country_rivalry.json --output artifacts/two-country`
 - `python -m civlab.cli run-scenario scenarios/empirical_kenya_ethiopia.json --output artifacts/kenya-ethiopia`
+- `python -m civlab.cli refresh-dashboard`
+- `python -m civlab.cli serve-dashboard --port 8000`
+
+## Browser Dashboard
+
+The repository now includes a static browser client in `web/` for inspecting simulator runs.
+
+- run a scenario to generate `artifacts/<run>/summary.json`, `country_year.csv`, and `events.jsonl`
+- refresh the dashboard manifest with `python -m civlab.cli refresh-dashboard`
+- serve the dashboard with `python -m civlab.cli serve-dashboard --port 8000`
+- open `http://127.0.0.1:8000/web/index.html`
+
+The dashboard currently provides:
+
+- a run selector across all artifact bundles
+- a year slider for replaying the simulation
+- a civilization-field view showing countries as nodes and tensions as links
+- metric trajectories across years
+- per-country status cards
+- an event feed for the selected year
 
 ## Source Inspirations
 
