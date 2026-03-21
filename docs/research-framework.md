@@ -94,6 +94,80 @@ The simulator should reproduce stylized facts such as:
 
 Only after calibration should the simulator be used for cautious forecasting exercises.
 
+## Backtesting, Forecasting, Explanation
+
+The simulator should support three distinct empirical uses.
+
+### Backtesting
+
+Use retrospective country-year validation to test whether the simulator can reproduce known trajectories.
+
+Core rules:
+
+- train or calibrate on past periods only
+- hold out later years for hindcasting
+- prefer rolling-origin evaluation over one fixed split
+- compare against simple statistical baselines
+- inspect both level accuracy and directional accuracy
+
+### Forecasting
+
+Forecasting should be scenario-based and uncertainty-aware.
+
+Core rules:
+
+- only forecast after passing backtests on comparable outcomes
+- report uncertainty bands and scenario assumptions explicitly
+- separate conditional forecasts from unconditional claims
+
+### Explanation
+
+Explanation means identifying plausible mechanisms, not only fitting outcomes.
+
+Core rules:
+
+- keep causal assumptions explicit in the biology, psychology, and sociology modules
+- trace which mechanisms drove the outcome in each run
+- compare alternative causal modules against the same historical episode
+
+## QoG-Centered Validation Strategy
+
+The first empirical anchor should be the QoG ecosystem.
+
+Why QoG is a good fit:
+
+- it provides country-year panels suitable for historical backtesting
+- it aggregates many governance-relevant sources in one harmonized framework
+- it includes administrative-quality indicators that matter for state capacity
+
+Recommended usage:
+
+- use the QoG Basic or Standard time-series datasets as the main country-year panel
+- use the QoG Expert Survey for bureaucracy design, meritocracy, impartiality, and political interference
+- align these with conflict, trade, demography, and macroeconomic sources for target outcomes
+
+Suggested initial target variables:
+
+- institutional trust proxies
+- bureaucratic quality and impartiality
+- tax capacity
+- regime characteristics
+- inequality and welfare proxies
+- violence or conflict onset indicators
+
+## Evaluation Targets
+
+The simulator should be scored on multiple criteria.
+
+Suggested metrics:
+
+- trajectory error over held-out years
+- turning-point detection
+- rank-order accuracy across countries
+- calibration of uncertainty intervals
+- mechanism plausibility judged against known history
+- explanatory compactness, meaning few ad hoc assumptions per case
+
 ## Data Sources To Integrate Later
 
 Likely data families:
@@ -109,6 +183,8 @@ Likely data families:
 
 Candidate sources to assess for licensing and fit:
 
+- QoG Basic and Standard datasets
+- QoG Expert Survey
 - World Bank
 - Maddison Project Database
 - V-Dem
@@ -126,4 +202,8 @@ Recommended early experiments:
 3. Trust formation and collapse across unequal regions
 4. Cultural transmission and institution persistence across generations
 5. Peace durability under trade interdependence versus military deterrence
+6. Hindcast whether changes in bureaucratic quality and state capacity predict later resilience or conflict
 
+## Minimum empirical standard
+
+No forecasting claims about the future of nations or humanity should be treated as credible unless the simulator first shows useful hindcast performance on historical country-year data.

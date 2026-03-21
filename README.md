@@ -12,6 +12,7 @@ Build a research-grade simulator that can represent civilizations as interacting
 - hybrid agents that combine scripted constraints with learned policies
 
 The system is intended to explain observed macro-social dynamics, test counterfactuals, and eventually support cautious forecasting about nations and humanity as a whole.
+It should also support retrospective backtesting on real country-year data, especially through QoG and related comparative datasets, so that forecasting and explanation are grounded in observed history.
 
 ## Core Research Questions
 
@@ -20,6 +21,7 @@ The system is intended to explain observed macro-social dynamics, test counterfa
 3. How do biological tendencies, psychology, and social structure interact across micro, meso, and macro scales?
 4. Which combinations of institutions, norms, geography, and incentives support flourishing?
 5. Can simulation traces become training data for a civilization foundation model?
+6. Can the simulator reproduce and explain observed trajectories in real country data before it is trusted for forecasts?
 
 ## Initial Product Decision
 
@@ -55,8 +57,9 @@ This keeps the science, training loops, calibration, and reproducibility indepen
 2. `Society Layer`: states, governments, institutions, laws, religions, cultures, and class structure
 3. `Agent Layer`: leaders, ministries, elites, firms, military actors, households, and population cohorts
 4. `Decision Layer`: rule-based, RL, LLM, and hybrid policy engines
-5. `Research Layer`: calibration, metrics, experiments, forecasting, and interpretability
-6. `Visual Layer`: map, timeline, diplomacy view, class tension view, and event replay
+5. `Empirical Layer`: data ingestion, harmonization, calibration, backtesting, and hindcasting
+6. `Research Layer`: metrics, experiments, forecasting, and interpretability
+7. `Visual Layer`: map, timeline, diplomacy view, class tension view, and event replay
 
 ## First Deliverables
 
@@ -65,12 +68,14 @@ This keeps the science, training loops, calibration, and reproducibility indepen
 - a vertical slice with a small number of countries and population cohorts
 - a conflict-and-flourishing metrics framework
 - a simulator loop that can run the same scenario with different agent backends
+- a country-year validation pipeline that can compare simulated trajectories to observed historical panels
 - a visual analytics client for inspection and replay
 
 ## Documents
 
 - `docs/system-architecture.md`
 - `docs/research-framework.md`
+- `docs/empirical-validation.md`
 - `docs/technology-decision.md`
 - `docs/roadmap.md`
 
@@ -80,4 +85,3 @@ This keeps the science, training loops, calibration, and reproducibility indepen
 - Project Sid repository: `https://github.com/altera-al/project-sid`
 - AI Economist: `https://github.com/salesforce/ai-economist`
 - Cesium for Unreal: `https://cesium.com/learn/cesium-unreal/ref-doc/`
-

@@ -7,7 +7,8 @@
 3. Model society at multiple scales instead of only at the individual level.
 4. Use real-world geography and data where possible.
 5. Preserve replayability, interpretability, and experiment control.
-6. Treat forecasting as a downstream use case, not the first milestone.
+6. Require successful backtesting before trusting forecasts.
+7. Treat forecasting as a downstream use case, not the first milestone.
 
 ## Recommended Architecture
 
@@ -57,6 +58,21 @@ Initial visual targets:
 - class tension and trust heatmaps
 - replay mode for major historical paths
 
+### 4. Empirical data and validation layer
+
+The simulator needs a dedicated empirical layer rather than ad hoc data loading.
+
+Suggested responsibilities:
+
+- ingest country-year and subnational datasets
+- harmonize country codes, year coverage, and missingness rules
+- define mappings from observed variables to latent simulator state
+- calibrate uncertain parameters against historical trajectories
+- run hindcasts and rolling-origin backtests
+- score explanatory and predictive performance
+
+The main initial target should be country-year validation against QoG-centered panels, then expansion to conflict, trade, climate, and survey datasets.
+
 ## World Model
 
 ### Geography
@@ -89,6 +105,7 @@ Countries should have:
 - military capacity
 - trade dependence
 - demographic composition
+- links to observed historical indicators for calibration and validation
 
 ## Social Model
 
@@ -185,6 +202,8 @@ Use multiple time scales:
 - monthly or quarterly for policy
 - annual for demographic, institutional, and macro outcomes
 
+Backtesting should happen primarily at the annual country-year level first, even if the internal simulator runs on finer time steps.
+
 ## Learning and AI Training
 
 The simulator should produce structured trajectories suitable for model training.
@@ -200,6 +219,19 @@ Secondary long-term goal:
 
 train a civilization analysis model on simulation traces plus historical data, but only after the simulator is stable and calibrated.
 
+## Calibration and validation workflow
+
+Recommended order:
+
+1. define a latent state that is theoretically meaningful
+2. map observed QoG and companion variables into that latent state
+3. calibrate parameters on an early historical window
+4. run hindcasts on held-out years and countries
+5. inspect failures before adding more model complexity
+
+Do not optimize only for one-step prediction.
+The system should also explain pathway dynamics, such as why trust, legitimacy, fiscal capacity, and conflict risk changed together.
+
 ## Initial Technical Boundaries
 
 Version 1 should not attempt all of the following at once:
@@ -210,4 +242,3 @@ Version 1 should not attempt all of the following at once:
 - real-time multiplayer human participation
 
 Start with a bounded but expressive simulator and expand after the first validation loop.
-

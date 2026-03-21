@@ -8,12 +8,14 @@ Deliverables:
 - system architecture
 - variable ontology
 - first scenario definitions
+- empirical validation design centered on country-year backtesting
 
 Exit criteria:
 
 - agreement on unit of simulation
 - agreement on flourishing metrics
 - agreement on first vertical slice
+- agreement on first QoG-based validation targets
 
 ## Phase 1: Minimal scientific core
 
@@ -23,12 +25,14 @@ Scope:
 - a small set of countries
 - leader, government, and cohort population agents
 - resource flows, taxation, legitimacy, trust, and basic diplomacy
+- country-year observation layer for historical calibration
 
 Exit criteria:
 
 - one scenario runs end to end
 - rule-based agents work
 - event logs support replay and analysis
+- annual outputs can be aligned to observed country-year variables
 
 ## Phase 2: Social complexity
 
@@ -82,10 +86,12 @@ Scope:
 - parameter sweeps
 - uncertainty estimates
 - cautious scenario forecasting
+- QoG-centered backtesting and hindcasting
 
 Exit criteria:
 
 - simulator reproduces selected stylized facts
+- simulator beats simple baselines on at least one historical country-year target family
 - forecasting claims are documented with uncertainty bounds
 
 ## Phase 6: Visual flagship
@@ -111,7 +117,6 @@ Recommended sequence:
 3. implement the minimal simulation clock and event log
 4. add rule-based leader and government agents
 5. add population cohorts and trust or legitimacy dynamics
-6. build the first map-based replay dashboard
-7. run a two-country peace-versus-war experiment
-8. review what needs RL or LLM support instead of guessing early
-
+6. wire in QoG-based country-year targets for the first validation loop
+7. build the first map-based replay dashboard
+8. run a two-country peace-versus-war experiment
